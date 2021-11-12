@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+	<title>DivBox</title>
+
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<div class="main">
+			<nav class="navbar fixed-top navbar-expand navbar-light navbar-bg">
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item">
+							<a onclick="App.connectWebWallet()"  data-connect-btn>
+								<button class="position-relative btn btn-primary fs-4" style="border-radius: 1.5rem">
+									Connect Wallet
+								</button>
+							</a>
+							<strong data-wallet-address style="display: none; line-height: 2rem; padding: 0; margin: 0">Your wallet: <em class="text-muted"></em></strong>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<main class="content" style="padding-top: 6rem;">
+				<div class="container p-0" style="max-width:992px">
+
+					<div class="row" style="padding-bottom: 2rem;">
+						<div class="col-12 text-center ">
+							<h1 class="mb-0"><strong>DivBox</strong>
+							</h1>
+						</div>
+						<div class="col-12 text-center">
+							<span class="fs-3 text-muted "></span>
+						</div>
+					</div>
+
+					<!-- Indicators -->
+					<div class="row">
+						<div class="col-xs-12 d-flex">
+							<div class="w-100">
+								<div class="row">
+
+									<!-- Your shares -->
+									<div class="col-sm-12 col-md-6">
+										<div class="card text-center">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Shares</h5>
+													</div>
+												</div>
+												<h1 class="mt-0 mb-0 text-primary" data-shares-num>-</h1>
+											</div>
+										</div>
+									</div>
+
+									<!-- USD value -->
+									<div class="col-sm-12 col-md-6">
+										<div class="card text-center">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">ETH Value</h5>
+													</div>
+												</div>
+												<h1 class="mt-0 mb-0 text-success" data-eth-value>-</h1>
+											</div>
+										</div>
+									</div>
+
+									<!-- Holding power -->
+									<div class="col-sm-12 col-md-6">
+										<div class="card text-center">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Holding power</h5>
+													</div>
+												</div>
+												<div class="progress" style="height: auto; border-radius: 0.6rem; position: relative; margin-top: 0.1rem;">
+													<h1 style="position: absolute; width: 100%; font-size: 1rem; line-height: 2rem; font-weight: bold; color: #3B7DDD" class="mt-0 mb-0" data-holding-power></h1>
+													<div class="progress-bar progress-bar-striped progress-bar-animated" id="progressbar"  style="background-color: #9dbeee; height: 2rem;"></div>
+												  </div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Dividends -->
+									<div class="col-sm-12 col-md-6">
+										<div class="card text-center">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Dividends</h5>
+													</div>
+												</div>
+												<h1 class="mt-0 mb-0 text-success" data-dividends>-</h1>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Buy/Sell/Withdraw -->
+					<div class="row mt-3">
+
+						<!-- Buy shares -->
+						<div class="col-lg-4">
+							<div class="card flex-fill">
+								<div class="card-header text-center">
+									<h5 class="card-title mb-0">Buy shares</h5>
+								</div>
+								<div class="card-body mb-0 pt-0">
+									<div class="input-group mb-0">
+										<input type="text" class="form-control text-muted" disabled data-input data-buy-shares-input>
+										<input type="button" class="btn btn-secondary" value="ETH" disabled onclick="App.setMaxBuy(this)" data-max-button>
+									</div>
+									<div class="mt-1 text-center">
+										<em style="color: #ccc; visibility: hidden" data-buy-shares-num>-</em>
+										<div class="row mt-1">
+											<div class="col-sm-12 text-center">
+												<input type="button" class="btn btn-success btn-block w-50" value="Buy"  data-buy-btn
+													disabled>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Sell shares -->
+						<div class="col-lg-4">
+							<div class="card flex-fill">
+								<div class="card-header text-center">
+									<h5 class="card-title mb-0">Sell shares</h5>
+								</div>
+								<div class="card-body mb-0 pt-0">
+									<div class="input-group mb-0">
+										<input type="text" class="form-control text-muted" disabled data-input data-sell-shares-input>
+										<input type="button" class="btn btn-secondary" value="#" disabled data-max-button onclick="App.setMaxSell(this)">
+									</div>
+									<div class="mt-1 text-center">
+										<em style="color: #ccc; visibility: hidden" data-sell-shares-value>-</em>
+										<div class="row mt-1">
+											<div class="col-sm-12 text-center">
+												<input type="button" class="btn btn-danger btn-block w-50" value="Sell" data-sell-btn
+													disabled>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Dividends  -->
+						<div class="col-lg-4">
+							<div class="card flex-fill">
+								<div class="card-header text-center">
+									<h5 class="card-title mb-0">Dividends</h5>
+								</div>
+								<div class="card-body mb-0 pt-0">
+									<div class="input-group mb-0">
+										<input type="text" class="form-control text-muted" disabled data-input data-dividends-input>
+										<input type="button" class="btn btn-secondary" value="ETH" disabled data-max-button onclick="App.setMaxDividends(this)">
+									</div>
+									<div class="mt-1 text-center">
+										<em data-dividends-txt style="color: #ccc; visibility: hidden">-</em>
+										<div class="row mt-1">
+											<div class="col-sm-12 text-center">
+												<input type="button" class="btn btn-warning btn-block w-50" disabled data-withdraw-btn
+													value="Withdraw">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<!-- Help modal -->
+	<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title text-info w-100 text-center" id="helpModalTitle">What is Smart Savings?</h3>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" style="font-weight: bold">
+					<p>Smart Savings is a fully decentralized dApp that allows you to earn passive income with your ETH, while keeping 100% control over your funds.</p>
+					<p>You can earn in two ways:</p>
+					<ol>
+						<li class="mb-3">You buy shares in the platform using ETH and just hold them. Funds from shares are automatically invested in Compound, one of the largest and most secure collateralized lending protocols. That means that your shares will always grow in ETH value and you can sell them later for profit!</li>
+						<li>Whenever someone buys or sells shares, a small fee is charged and distributed proportionally among all share holders. That means that if you hold 50% of the total shares, you'll get 50% of dividends. The more shares you have, the more holding power you willl have and more dividends you will get!</li>
+					</ol>
+					<p>You can sell your shares or withdraw your dividends at any time!</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Transaction modal -->
+	<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalTitle"
+	 	aria-hidden="true" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title text-success text-center w-100" id="transactionModalTitle">Transaction sent</h3>
+				</div>
+				<div class="modal-body text-center">
+					<p class="fs-4 mb-2">Your transaction is being confirmed now.</p>
+					<div class="spinner-border text-primary m-3" role="status"></div>
+					<p class="mb-0">Transaction hash:</p>
+					<a href="javascript:void(0)" target="_blank" style="text-overflow: ellipsis; overflow: hidden; display: block;"></a>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	<!-- Error modal -->
+	<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title text-danger w-100 text-center" id="errorModalTitle">Error</h3>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/web3.min.js"></script>
+	<script src="js/app.js?v=1"></script>
+  	<script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"ldapps",utcoffset:"0"}))};sessionStorage.setItem("_swa","1");</script>
+</body>
+
+</html>
