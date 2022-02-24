@@ -630,8 +630,8 @@ input[type='checkbox'] {
 /*     Details 1     */
 /*********************/
 .basic-1 {
-	padding-top: 8.5rem;
-	padding-bottom: 10rem;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
 }
 
 .basic-1 .text-container {
@@ -1548,7 +1548,7 @@ a:hover.back-to-top {
 
 	/* Details 3 */
 	.basic-3 {
-		padding-top: 12.5rem;
+		padding-top: 4rem;
 	}
 
 	.basic-3 .text-container {
