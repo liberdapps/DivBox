@@ -1,7 +1,7 @@
 const App = {
 
   networkId: null,
-  contractAddress: '0x6641f7c1D587C43050B400C5F90022870991E217',
+  contractAddress: '0x3AeBf9522D7bC68636F7CdAb7581BD0486E8dc42',
   contractABI: [
 			{
 				"inputs": [
